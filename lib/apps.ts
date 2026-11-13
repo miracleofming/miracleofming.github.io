@@ -10,6 +10,7 @@ export type App = {
   // 화면 위쪽 상태바 자리는 비워 두므로 상태바 없는 캡처를 쓴다.
   screenshots?: string[];
   screenColor?: string; // 스크린샷 위 상태바 자리 배경 (캡처 맨 윗줄 색)
+  fullScreenShots?: boolean; // 상태바까지 담긴 실제 폰 캡처면 true → 화면을 꽉 채운다
   status?: string; // 예: "App Store 출시", "개발 중" (정해지면 추가)
   storeLinks?: { label: string; href: string }[];
 };
@@ -19,6 +20,9 @@ export const apps: App[] = [
     slug: "beatcue",
     icon: "/apps/beatcue/icon.png",
     splashColor: "#090c05",
+    screenColor: "#0a0a0a",
+    fullScreenShots: true,
+    screenshots: [1, 2, 3, 4, 5, 6, 7].map((n) => `/apps/beatcue/screen-${n}.webp`),
     name: "BeatCue",
     summary: "비트에 맞춰 달리고 걷는 인터벌 러닝 앱. 광고 없이 오프라인으로 동작합니다.",
   },

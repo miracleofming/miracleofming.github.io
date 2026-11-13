@@ -38,7 +38,7 @@ export function AppScreen({ app, src }: { app: App; src?: string }) {
           alt={`${app.name} 화면`}
           draggable={false}
           className="absolute inset-x-0 bottom-0 w-full object-cover object-top"
-          style={{ top: STATUS_BAR, height: `calc(100% - ${STATUS_BAR})` }}
+          style={app.fullScreenShots ? { top: 0, height: "100%" } : { top: STATUS_BAR, height: `calc(100% - ${STATUS_BAR})` }}
         />
       </div>
     );

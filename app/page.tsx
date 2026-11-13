@@ -17,6 +17,7 @@ export default function Home() {
         <h1 className="mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight">
           {profile.headline}
         </h1>
+        <p className="mt-4 max-w-2xl text-lg text-muted">{profile.subline}</p>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link
             href="/#apps"
@@ -37,22 +38,22 @@ export default function Home() {
             <h2 className="text-2xl font-bold tracking-tight">앱</h2>
             <span className="text-sm text-muted">{apps.length}개</span>
           </div>
-          <ul className="mt-6 divide-y divide-line border-y border-line">
+          {/* 그리드: 앱마다 소개 페이지로 이동하는 카드 한 장 (카드 전체가 링크) */}
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {apps.map((app) => (
               <li key={app.slug}>
                 <Link
                   href={`/apps/${app.slug}/`}
-                  className="-mx-3 flex items-center gap-4 rounded-[var(--radius-ui)] px-3 py-5 hover:bg-surface"
+                  className="flex h-full flex-col rounded-[var(--radius-ui)] border border-line p-6 hover:bg-surface"
                 >
                   <AppIcon name={app.name} />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-baseline gap-x-3">
-                      <span className="text-lg font-semibold">{app.name}</span>
-                      <span className="text-sm text-muted">{app.status}</span>
-                    </div>
-                    <p className="mt-1 text-muted">{app.summary}</p>
-                  </div>
-                  <ChevronRight className="shrink-0 text-muted" />
+                  <span className="mt-5 text-lg font-semibold">{app.name}</span>
+                  {app.status && <span className="mt-1 text-sm text-muted">{app.status}</span>}
+                  <p className="mt-2 leading-7 text-muted">{app.summary}</p>
+                  <span className="mt-auto flex items-center gap-1 pt-6 text-sm font-medium text-accent">
+                    자세히 보기
+                    <ChevronRight className="size-4" />
+                  </span>
                 </Link>
               </li>
             ))}
@@ -66,12 +67,10 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight">소개</h2>
           <div className="max-w-2xl">
             {profile.about.map((p) => (
-              <p key={p} className="mb-4 leading-7">
+              <p key={p} className="mb-4 text-lg leading-8">
                 {p}
               </p>
             ))}
-            <p className="mt-8 text-sm font-semibold">주로 쓰는 기술</p>
-            <p className="mt-2 text-muted">{profile.stack.join(", ")}</p>
           </div>
         </div>
       </section>

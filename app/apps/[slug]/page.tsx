@@ -33,17 +33,21 @@ export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {
         <AppIcon name={app.name} size="lg" />
         <div>
           <h1 className="text-3xl font-bold tracking-tight">{app.name}</h1>
-          <p className="mt-1 text-muted">{app.status}</p>
+          {app.status && <p className="mt-1 text-muted">{app.status}</p>}
         </div>
       </div>
 
       <p className="mt-10 max-w-2xl text-lg leading-8">{app.summary}</p>
-      <p className="mt-4 max-w-2xl leading-7 text-muted">{app.description}</p>
 
-      <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6">
-        <span className="text-accent">[App Store 링크]</span>
-        <span className="text-accent">[Google Play 링크]</span>
-      </div>
+      {app.storeLinks && app.storeLinks.length > 0 && (
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6">
+          {app.storeLinks.map((link) => (
+            <a key={link.href} href={link.href} className="font-medium text-accent">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

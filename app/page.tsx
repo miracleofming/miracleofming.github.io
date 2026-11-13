@@ -20,7 +20,7 @@ export default function Home() {
       </Container>
 
       {/* 앱: 카드 전체가 소개 페이지로 가는 링크 */}
-      <Section id="apps" title="앱" aside={`${apps.length}개`}>
+      <Section id="apps" title="앱">
         <AppShowcase apps={apps} />
       </Section>
 

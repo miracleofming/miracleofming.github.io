@@ -1,0 +1,49 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { apps, getApp } from "@/lib/apps";
+import { AppIcon } from "@/components/AppIcon";
+
+// static export: 빌드할 때 apps 배열의 slug마다 HTML을 한 장씩 만든다.
+export function generateStaticParams() {
+  return apps.map((app) => ({ slug: app.slug }));
+}
+
+// 배열에 없는 slug는 만들지 않고 404로 보낸다.
+export const dynamicParams = false;
+
+export async function generateMetadata({ params }: PageProps<"/apps/[slug]">): Promise<Metadata> {
+  const { slug } = await params;
+  const app = getApp(slug);
+  return { title: app?.name, description: app?.summary };
+}
+
+export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {
+  const { slug } = await params;
+  const app = getApp(slug);
+  if (!app) notFound();
+
+  return (
+    <main className="mx-auto max-w-5xl px-4 pt-10 pb-20 sm:px-6">
+      <Link href="/#apps" className="text-sm text-muted hover:text-foreground">
+        앱 목록
+      </Link>
+
+      <div className="mt-8 flex items-center gap-5">
+        <AppIcon name={app.name} size="lg" />
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">{app.name}</h1>
+          <p className="mt-1 text-muted">{app.status}</p>
+        </div>
+      </div>
+
+      <p className="mt-10 max-w-2xl text-lg leading-8">{app.summary}</p>
+      <p className="mt-4 max-w-2xl leading-7 text-muted">{app.description}</p>
+
+      <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6">
+        <span className="text-accent">[App Store 링크]</span>
+        <span className="text-accent">[Google Play 링크]</span>
+      </div>
+    </main>
+  );
+}

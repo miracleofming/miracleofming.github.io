@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { App } from "@/lib/apps";
+import { APP_SELECT_EVENT } from "@/lib/appSelect";
 import { AppIcon } from "@/components/AppIcon";
 import { ChevronRight } from "@/components/ChevronRight";
 import { AppScreen, DeviceFrame } from "@/components/DeviceFrame";
@@ -12,6 +13,18 @@ import { AppScreen, DeviceFrame } from "@/components/DeviceFrame";
 export function AppShowcase({ apps }: { apps: App[] }) {
   const [selected, setSelected] = useState(0);
   const current = apps[selected];
+
+  // 히어로 "만든 앱" 줄에서 고른 앱, 또는 주소의 ?app=slug 로 탭을 맞춘다.
+  useEffect(() => {
+    const pick = (slug: string | null) => {
+      const i = apps.findIndex((app) => app.slug === slug);
+      if (i >= 0) setSelected(i);
+    };
+    pick(new URLSearchParams(window.location.search).get("app"));
+    const onSelect = (e: Event) => pick((e as CustomEvent<string>).detail);
+    window.addEventListener(APP_SELECT_EVENT, onSelect);
+    return () => window.removeEventListener(APP_SELECT_EVENT, onSelect);
+  }, [apps]);
 
   return (
     <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-16">

@@ -21,7 +21,7 @@ export function Section({
 }) {
   const heading = <h2 className="text-title font-bold">{title}</h2>;
   return (
-    <section id={id} className="scroll-mt-8 border-t border-line">
+    <section id={id} className="scroll-mt-20 border-t border-line">
       {layout === "split" ? (
         <Container className="grid gap-6 py-16 sm:grid-cols-[12rem_1fr] sm:py-20">
           {heading}

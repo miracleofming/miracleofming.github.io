@@ -2,6 +2,7 @@
 export const profile = {
   siteName: "밍기적",
   name: "밍지",
+  handle: "miracleofming", // 푸터 저작권 표기
   headline: "밍지가 일으키는 기적",
   subline: "일상에서 필요했던 것들을 만들고 있습니다.",
   about: [

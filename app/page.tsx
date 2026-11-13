@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       {/* 히어로 */}
       <Container className="pt-16 pb-20 sm:pt-24 sm:pb-28">
-        <h1 className="text-display-sm font-bold sm:text-display">{profile.headline}</h1>
+        <h1 className="whitespace-pre-line text-display-sm font-bold sm:whitespace-normal sm:text-display">{profile.headline}</h1>
         <p className="mt-4 max-w-2xl text-lead text-muted">{profile.subline}</p>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <ButtonLink href="/#apps">앱 둘러보기</ButtonLink>

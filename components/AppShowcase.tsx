@@ -5,9 +5,10 @@ import { useState } from "react";
 import type { App } from "@/lib/apps";
 import { AppIcon } from "@/components/AppIcon";
 import { ChevronRight } from "@/components/ChevronRight";
-import { ScreenCarousel } from "@/components/ScreenCarousel";
+import { AppScreen, DeviceFrame } from "@/components/DeviceFrame";
 
-// 앱 아이콘(탭)을 누르면 오른쪽 폰 화면이 그 앱의 스크린샷 캐러셀로 바뀐다.
+// 앱 아이콘(탭)을 누르면 오른쪽 폰 화면이 그 앱의 대표 화면으로 바뀐다.
+// 여러 장 넘겨 보기는 /apps/[slug] 상세 페이지에서 한다.
 export function AppShowcase({ apps }: { apps: App[] }) {
   const [selected, setSelected] = useState(0);
   const current = apps[selected];
@@ -15,7 +16,7 @@ export function AppShowcase({ apps }: { apps: App[] }) {
   return (
     <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-16">
       <div>
-        <ul role="tablist" aria-label="앱 고르기" className="flex gap-2 sm:gap-4">
+        <ul role="tablist" aria-label="앱 고르기" className="flex flex-wrap gap-2 sm:gap-4">
           {apps.map((app, i) => {
             const active = i === selected;
             return (
@@ -46,8 +47,9 @@ export function AppShowcase({ apps }: { apps: App[] }) {
 
       <div id="app-panel" role="tabpanel" aria-labelledby={`app-tab-${current.slug}`}>
         <div className="mx-auto w-[220px] sm:w-[260px]">
-          {/* key를 바꿔 앱이 바뀌면 캐러셀을 새로 만든다 → 항상 첫 장부터 */}
-          <ScreenCarousel key={current.slug} app={current} />
+          <DeviceFrame background={current.screenColor ?? current.splashColor}>
+            <AppScreen app={current} src={current.screenshots?.[0]} />
+          </DeviceFrame>
         </div>
         <div className="mt-8 sm:hidden">
           <AppDetail app={current} />

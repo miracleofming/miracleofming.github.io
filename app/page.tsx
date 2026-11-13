@@ -19,8 +19,8 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* 앱: 카드 전체가 소개 페이지로 가는 링크 */}
-      <Section id="apps" title="앱">
+      {/* 앱: 소개·연락과 같은 두 단 틀. 아이콘을 누르면 폰 화면이 바뀐다 */}
+      <Section id="apps" title="앱" layout="split">
         <AppShowcase apps={apps} />
       </Section>
 

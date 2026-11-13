@@ -1,6 +1,6 @@
 import { apps } from "@/lib/apps";
 import { profile } from "@/lib/profile";
-import { AppShowcase } from "@/components/AppShowcase";
+import { AppList } from "@/components/AppList";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Container, Section } from "@/components/Section";
 
@@ -19,9 +19,9 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* 앱: 카드 전체가 소개 페이지로 가는 링크 */}
-      <Section id="apps" title="앱">
-        <AppShowcase apps={apps} />
+      {/* 앱: 소개·연락과 같은 두 단 틀. 앱마다 한 행 + 대표 화면 한 장 */}
+      <Section id="apps" title="앱" layout="split">
+        <AppList apps={apps} />
       </Section>
 
       <Section id="about" title="소개" layout="split">

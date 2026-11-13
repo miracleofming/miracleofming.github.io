@@ -28,7 +28,7 @@ export default function Home() {
       <Section id="about" title="소개" layout="split">
         <div className="max-w-2xl space-y-4">
           {profile.about.map((p) => (
-            <p key={p} className="text-lead">
+            <p key={p} className="whitespace-pre-line text-lead">
               {p}
             </p>
           ))}

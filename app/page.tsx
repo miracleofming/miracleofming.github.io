@@ -46,7 +46,7 @@ export default function Home() {
                   href={`/apps/${app.slug}/`}
                   className="flex h-full flex-col rounded-[var(--radius-ui)] border border-line p-6 hover:bg-surface"
                 >
-                  <AppIcon name={app.name} />
+                  <AppIcon app={app} />
                   <span className="mt-5 text-lg font-semibold">{app.name}</span>
                   {app.status && <span className="mt-1 text-sm text-muted">{app.status}</span>}
                   <p className="mt-2 leading-7 text-muted">{app.summary}</p>

@@ -30,7 +30,7 @@ export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {
       </Link>
 
       <div className="mt-8 flex items-center gap-5">
-        <AppIcon name={app.name} size="lg" />
+        <AppIcon app={app} size="lg" />
         <div>
           <h1 className="text-3xl font-bold tracking-tight">{app.name}</h1>
           {app.status && <p className="mt-1 text-muted">{app.status}</p>}

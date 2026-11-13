@@ -1,11 +1,12 @@
 import { profile } from "@/lib/profile";
+import { Container } from "@/components/Section";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-muted sm:px-6">
+      <Container className="py-8 text-caption text-muted">
         © {new Date().getFullYear()} {profile.name}
-      </div>
+      </Container>
     </footer>
   );
 }

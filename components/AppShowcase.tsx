@@ -59,10 +59,10 @@ export function AppShowcase({ apps }: { apps: App[] }) {
 
 function AppDetail({ app }: { app: App }) {
   return (
-    <div className="max-w-md">
+    <div>
       <p className="text-title font-bold">{app.name}</p>
       {app.status && <p className="mt-1 text-caption text-muted">{app.status}</p>}
-      <p className="mt-2 text-lead text-muted">{app.summary}</p>
+      <p className="mt-3 whitespace-pre-line text-body text-muted">{app.summary}</p>
       <Link
         href={`/apps/${app.slug}/`}
         className="mt-4 inline-flex items-center gap-1 text-body font-semibold text-accent underline-offset-4 hover:underline"

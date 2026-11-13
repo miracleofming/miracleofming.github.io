@@ -3,7 +3,7 @@
 export type App = {
   slug: string; // URL에 쓰는 이름: /apps/<slug>
   name: string;
-  summary: string; // 한 줄 소개
+  summary: string; // 소개 문구. 줄바꿈(\n)한 자리에서 화면에서도 줄이 바뀐다
   icon?: string; // public/ 기준 경로. 없으면 이름 첫 글자로 대신 표시
   splashColor: string; // 스크린샷이 없을 때 폰 화면 배경 (아이콘 배경색)
   // 폰 프레임 안에 들어갈 앱 화면들 (public/ 기준 경로). 첫 장이 홈 목록에 쓰인다.
@@ -24,7 +24,7 @@ export const apps: App[] = [
     fullScreenShots: true,
     screenshots: [1, 2, 3, 4, 5, 6, 7].map((n) => `/apps/beatcue/screen-${n}.webp`),
     name: "BeatCue",
-    summary: "비트에 맞춰 달리고 걷는 인터벌 러닝 앱. 광고 없이 오프라인으로 동작합니다.",
+    summary: "비트에 맞춰 달리고 걷는 인터벌 러닝 앱.\n광고 없이 오프라인으로 동작합니다.",
   },
   {
     slug: "gilgwattae",
@@ -37,7 +37,8 @@ export const apps: App[] = [
       "/apps/gilgwattae/screen-3.webp",
     ],
     name: "길과 때",
-    summary: "성경 속 인물이 걸은 길과 때를 지도와 타임라인으로 따라가는 게임.",
+    summary:
+      "성경 사건을 시대(때)와 지도(길) 위에 함께 놓아 보여줍니다.\n시대를 고르면 인물과 이동 경로가 보이고, 게임으로 흐름을 익힐 수 있습니다.",
   },
   {
     slug: "muhamo",
@@ -51,7 +52,8 @@ export const apps: App[] = [
       "/apps/muhamo/screen-4.webp",
     ],
     name: "무하모",
-    summary: "목표 하나 정하고, 함께 인증하며 서로 응원하는 습관 모임.",
+    summary:
+      "목표 하나 정하고, 함께 인증하며 서로 응원하는 습관 모임.\n혼자서는 흐지부지되던 다짐도, 같이 하면 끝까지 갈 수 있습니다.",
   },
 ];
 

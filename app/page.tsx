@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { apps } from "@/lib/apps";
 import { profile } from "@/lib/profile";
-import { AppIcon } from "@/components/AppIcon";
+import { DeviceFrame } from "@/components/DeviceFrame";
 import { ButtonLink } from "@/components/ButtonLink";
 import { ChevronRight } from "@/components/ChevronRight";
 import { Container, Section } from "@/components/Section";
@@ -24,21 +24,23 @@ export default function Home() {
 
       {/* 앱: 카드 전체가 소개 페이지로 가는 링크 */}
       <Section id="apps" title="앱" aside={`${apps.length}개`}>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 모바일은 가로로 넘겨 보고, 넓은 화면에서는 3열로 나란히 */}
+        <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-6 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0">
           {apps.map((app) => (
-            <li key={app.slug}>
-              <Link
-                href={`/apps/${app.slug}/`}
-                className="flex h-full flex-col rounded-[var(--radius-ui)] border border-line p-6 hover:bg-surface"
-              >
-                <AppIcon app={app} />
-                <span className="mt-5 text-lead font-semibold">{app.name}</span>
-                {app.status && <span className="text-caption text-muted">{app.status}</span>}
-                <p className="mt-2 text-body text-muted">{app.summary}</p>
-                <span className="mt-auto flex items-center gap-1 pt-6 text-caption font-semibold text-accent">
-                  자세히 보기
-                  <ChevronRight className="size-4" />
-                </span>
+            <li key={app.slug} className="w-[62%] shrink-0 snap-start sm:w-auto">
+              <Link href={`/apps/${app.slug}/`} className="group block">
+                <div className="mx-auto max-w-[240px]">
+                  <DeviceFrame app={app} />
+                </div>
+                <div className="mt-6">
+                  <span className="text-lead font-semibold">{app.name}</span>
+                  {app.status && <span className="ml-2 text-caption text-muted">{app.status}</span>}
+                  <p className="mt-1 text-body text-muted">{app.summary}</p>
+                  <span className="mt-3 flex items-center gap-1 text-caption font-semibold text-accent group-hover:underline underline-offset-4">
+                    자세히 보기
+                    <ChevronRight className="size-4" />
+                  </span>
+                </div>
               </Link>
             </li>
           ))}

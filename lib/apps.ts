@@ -5,6 +5,8 @@ export type App = {
   name: string;
   summary: string; // 한 줄 소개
   icon?: string; // public/ 기준 경로. 없으면 이름 첫 글자로 대신 표시
+  splashColor: string; // 스크린샷이 없을 때 폰 화면 배경 (아이콘 배경색)
+  screenshot?: string; // public/ 기준 경로. 폰 프레임 안에 들어갈 앱 화면 (세로 9:19.5 비율)
   status?: string; // 예: "App Store 출시", "개발 중" (정해지면 추가)
   storeLinks?: { label: string; href: string }[];
 };
@@ -13,18 +15,21 @@ export const apps: App[] = [
   {
     slug: "beatcue",
     icon: "/apps/beatcue/icon.png",
+    splashColor: "#090c05",
     name: "BeatCue",
     summary: "비트에 맞춰 달리고 걷는 인터벌 러닝 앱. 광고 없이 오프라인으로 동작합니다.",
   },
   {
     slug: "gilgwattae",
     icon: "/apps/gilgwattae/icon.png",
+    splashColor: "#efede6",
     name: "길과 때",
     summary: "성경 속 인물이 걸은 길과 때를 지도와 타임라인으로 따라가는 게임.",
   },
   {
     slug: "muhamo",
     icon: "/apps/muhamo/icon.png",
+    splashColor: "#fbfbf8",
     name: "무하모",
     summary: "목표 하나 정하고, 함께 인증하며 서로 응원하는 습관 모임.",
   },

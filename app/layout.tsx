@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: profile.siteName, template: `%s | ${profile.siteName}` },
-  description: `${profile.role} ${profile.name}이 만든 앱을 모아 둔 사이트`,
+  description: `${profile.name}가 만든 앱을 모아 둔 사이트`,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

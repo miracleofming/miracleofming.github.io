@@ -11,9 +11,7 @@ export default function Home() {
     <main>
       {/* 히어로 */}
       <section className={`${container} pt-16 pb-20 sm:pt-24 sm:pb-28`}>
-        <p className="text-muted">
-          {profile.role} {profile.name}
-        </p>
+        <p className="text-muted">{profile.role}</p>
         <h1 className="mt-3 max-w-2xl text-3xl leading-tight font-bold tracking-tight sm:text-5xl sm:leading-tight">
           {profile.headline}
         </h1>

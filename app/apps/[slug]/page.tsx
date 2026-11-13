@@ -41,7 +41,7 @@ export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {
         </div>
       </div>
 
-      <p className="mt-10 max-w-3xl whitespace-pre-line text-lead">{app.summary}</p>
+      <p className="mt-10 max-w-3xl sm:whitespace-pre-line text-lead">{app.summary}</p>
 
       <div className="mt-12 w-[240px] sm:w-[280px]">
         <ScreenCarousel app={app} />

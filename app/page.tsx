@@ -1,21 +1,18 @@
 import { apps } from "@/lib/apps";
 import { profile } from "@/lib/profile";
 import { AppShowcase } from "@/components/AppShowcase";
-import { ButtonLink } from "@/components/ButtonLink";
+import { HeroApps } from "@/components/HeroApps";
 import { Container, Section } from "@/components/Section";
 
 export default function Home() {
   return (
     <main>
-      {/* 히어로 */}
+      {/* 히어로: 사람 소개 + 만든 앱 줄(앱 섹션의 목차) */}
       <Container className="pt-16 pb-20 sm:pt-24 sm:pb-28">
         <h1 className="whitespace-pre-line text-display-sm font-bold sm:whitespace-normal sm:text-display">{profile.headline}</h1>
         <p className="mt-4 max-w-2xl text-lead text-muted">{profile.subline}</p>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <ButtonLink href="/#apps">앱 둘러보기</ButtonLink>
-          <ButtonLink href="/#contact" variant="text">
-            연락하기
-          </ButtonLink>
+        <div className="mt-12">
+          <HeroApps apps={apps} />
         </div>
       </Container>
 

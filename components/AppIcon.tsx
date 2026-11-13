@@ -1,8 +1,8 @@
 import type { App } from "@/lib/apps";
 
 // 앱 아이콘. 이미지가 없으면 앱 이름 첫 글자로 자리를 채운다.
-export function AppIcon({ app, size = "md" }: { app: App; size?: "md" | "lg" }) {
-  const box = size === "lg" ? "size-16 text-title" : "size-12 text-lead";
+export function AppIcon({ app, size = "md" }: { app: App; size?: "sm" | "md" | "lg" }) {
+  const box = { sm: "size-10 text-body", md: "size-12 text-lead", lg: "size-16 text-title" }[size];
   const shape = `${box} shrink-0 rounded-[var(--radius-ui)] border border-line`;
 
   if (app.icon) {

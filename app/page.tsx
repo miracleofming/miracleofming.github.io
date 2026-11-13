@@ -1,25 +1,21 @@
 import { apps } from "@/lib/apps";
 import { profile } from "@/lib/profile";
 import { AppShowcase } from "@/components/AppShowcase";
-import { HeroApps } from "@/components/HeroApps";
 import { Container, Section } from "@/components/Section";
 
 export default function Home() {
   return (
     <main>
-      {/* 히어로: 사람 소개 + 만든 앱 줄(앱 섹션의 목차) */}
-      <Container className="pt-16 pb-20 sm:pt-24 sm:pb-28">
-        <h1 className="whitespace-pre-line text-display-sm font-bold sm:whitespace-normal sm:text-display">{profile.headline}</h1>
-        <p className="mt-4 max-w-2xl text-lead text-muted">{profile.subline}</p>
-        <div className="mt-12">
-          <HeroApps apps={apps} />
-        </div>
-      </Container>
-
-      {/* 앱: 소개·연락과 같은 두 단 틀. 아이콘을 누르면 폰 화면이 바뀐다 */}
-      <Section id="apps" title="앱" layout="split">
-        <AppShowcase apps={apps} />
-      </Section>
+      {/* 히어로: 사람 소개 + 바로 아래 앱 탭과 폰 목업. 상단 메뉴 "앱"이 이 자리로 온다 */}
+      <section id="apps" className="scroll-mt-20">
+        <Container className="pt-16 pb-20 sm:pt-24 sm:pb-24">
+          <h1 className="whitespace-pre-line text-display-sm font-bold sm:whitespace-normal sm:text-display">{profile.headline}</h1>
+          <p className="mt-4 max-w-2xl text-lead text-muted">{profile.subline}</p>
+          <div className="mt-12 sm:mt-16">
+            <AppShowcase apps={apps} />
+          </div>
+        </Container>
+      </section>
 
       <Section id="about" title="소개" layout="split">
         <div className="max-w-2xl space-y-4">

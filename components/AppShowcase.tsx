@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { App } from "@/lib/apps";
-import { APP_SELECT_EVENT } from "@/lib/appSelect";
 import { AppIcon } from "@/components/AppIcon";
 import { ChevronRight } from "@/components/ChevronRight";
 import { AppScreen, DeviceFrame } from "@/components/DeviceFrame";
@@ -14,16 +13,10 @@ export function AppShowcase({ apps }: { apps: App[] }) {
   const [selected, setSelected] = useState(0);
   const current = apps[selected];
 
-  // 히어로 "만든 앱" 줄에서 고른 앱, 또는 주소의 ?app=slug 로 탭을 맞춘다.
+  // 주소의 ?app=slug 로 처음 고를 탭을 정한다. 링크를 공유하면 그 앱이 열린다.
   useEffect(() => {
-    const pick = (slug: string | null) => {
-      const i = apps.findIndex((app) => app.slug === slug);
-      if (i >= 0) setSelected(i);
-    };
-    pick(new URLSearchParams(window.location.search).get("app"));
-    const onSelect = (e: Event) => pick((e as CustomEvent<string>).detail);
-    window.addEventListener(APP_SELECT_EVENT, onSelect);
-    return () => window.removeEventListener(APP_SELECT_EVENT, onSelect);
+    const i = apps.findIndex((app) => app.slug === new URLSearchParams(window.location.search).get("app"));
+    if (i >= 0) setSelected(i);
   }, [apps]);
 
   return (

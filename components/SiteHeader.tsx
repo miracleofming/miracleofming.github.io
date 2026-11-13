@@ -5,12 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { profile } from "@/lib/profile";
 import { Container } from "@/components/Section";
 
-const nav = [
-  { href: "/#apps", label: "앱" },
-  { href: "/#about", label: "소개" },
-  { href: "/#contact", label: "연락" },
-];
-
 // 이만큼(px) 이상 움직였을 때만 숨김/보임을 바꾼다. 손가락 떨림 같은 작은 움직임은 무시.
 const THRESHOLD = 8;
 // 헤더 높이(h-14 = 56px). 맨 위 근처에서는 항상 보인다.
@@ -46,7 +40,7 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 키보드(Tab)로 헤더 링크에 오면 숨어 있어도 다시 보이게 한다.
+  // 키보드(Tab)로 헤더 링크(로고)에 오면 숨어 있어도 다시 보이게 한다.
   return (
     <header
       className={`sticky top-0 z-20 border-b border-line bg-background transition-transform duration-200 ease-out has-[:focus-visible]:translate-y-0 motion-reduce:transition-none ${
@@ -57,13 +51,6 @@ export function SiteHeader() {
         <Link href="/" className="text-body font-bold">
           {profile.siteName}
         </Link>
-        <nav className="flex gap-5 text-caption text-muted">
-          {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-foreground">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </Container>
     </header>
   );

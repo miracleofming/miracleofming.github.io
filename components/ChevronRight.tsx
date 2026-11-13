@@ -1,5 +1,5 @@
-// Lucide "chevron-right" (https://lucide.dev/icons/chevron-right)
-export function ChevronRight({ className = "" }: { className?: string }) {
+// Lucide "chevron-right" / "chevron-left" (https://lucide.dev/icons/chevron-right)
+function Chevron({ d, className = "" }: { d: string; className?: string }) {
   return (
     <svg
       aria-hidden
@@ -13,7 +13,10 @@ export function ChevronRight({ className = "" }: { className?: string }) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="m9 18 6-6-6-6" />
+      <path d={d} />
     </svg>
   );
 }
+
+export const ChevronRight = ({ className }: { className?: string }) => <Chevron d="m9 18 6-6-6-6" className={className} />;
+export const ChevronLeft = ({ className }: { className?: string }) => <Chevron d="m15 18-6-6 6-6" className={className} />;

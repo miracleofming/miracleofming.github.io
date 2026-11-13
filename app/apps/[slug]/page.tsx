@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { apps, getApp } from "@/lib/apps";
 import { AppIcon } from "@/components/AppIcon";
 import { Container } from "@/components/Section";
+import { ScreenCarousel } from "@/components/ScreenCarousel";
 
 // static export: 빌드할 때 apps 배열의 slug마다 HTML을 한 장씩 만든다.
 export function generateStaticParams() {
@@ -40,6 +41,10 @@ export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {
       </div>
 
       <p className="mt-10 max-w-2xl text-lead">{app.summary}</p>
+
+      <div className="mt-12 w-[240px] sm:w-[280px]">
+        <ScreenCarousel app={app} />
+      </div>
 
       {app.storeLinks && app.storeLinks.length > 0 && (
         <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6">

@@ -1,6 +1,6 @@
 import { apps } from "@/lib/apps";
 import { profile } from "@/lib/profile";
-import { AppList } from "@/components/AppList";
+import { AppShowcase } from "@/components/AppShowcase";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Container, Section } from "@/components/Section";
 
@@ -19,9 +19,9 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* 앱: 소개·연락과 같은 두 단 틀. 앱마다 한 행 + 대표 화면 한 장 */}
+      {/* 앱: 소개·연락과 같은 두 단 틀. 아이콘을 누르면 폰 화면이 바뀐다 */}
       <Section id="apps" title="앱" layout="split">
-        <AppList apps={apps} />
+        <AppShowcase apps={apps} />
       </Section>
 
       <Section id="about" title="소개" layout="split">

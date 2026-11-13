@@ -39,6 +39,13 @@ export const apps: App[] = [
     slug: "muhamo",
     icon: "/apps/muhamo/icon.png",
     splashColor: "#fbfbf8",
+    screenColor: "#f4f4f6",
+    screenshots: [
+      "/apps/muhamo/screen-1.webp",
+      "/apps/muhamo/screen-2.webp",
+      "/apps/muhamo/screen-3.webp",
+      "/apps/muhamo/screen-4.webp",
+    ],
     name: "무하모",
     summary: "목표 하나 정하고, 함께 인증하며 서로 응원하는 습관 모임.",
   },

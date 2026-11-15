@@ -13,6 +13,7 @@ export type App = {
   fullScreenShots?: boolean; // 상태바까지 담긴 실제 폰 캡처면 true → 화면을 꽉 채운다
   status?: string; // 예: "App Store 출시", "개발 중" (정해지면 추가)
   storeLinks?: { label: string; href: string }[];
+  ogImage?: string; // 링크 공유 미리보기 이미지 (public/ 기준 경로). 스토어 피처 그래픽 1024x500
 };
 
 export const apps: App[] = [
@@ -61,7 +62,8 @@ export const apps: App[] = [
     splashColor: "#d6d2c8",
     screenColor: "#d6d2c8",
     fullScreenShots: true,
-    screenshots: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `/apps/jaraneunna/screen-${n}.webp`),
+    screenshots: [1, 2, 3, 4, 5, 6].map((n) => `/apps/jaraneunna/screen-${n}.webp`),
+    ogImage: "/apps/jaraneunna/feature-graphic.png",
     name: "자라는 나",
     summary:
       "나를 닮은 도트 캐릭터와 목표별 알을 키우는 육성 기록 앱.\n'운동하는 나', '책 읽는 나'처럼 목표마다 알을 두고, 기록할 때마다 함께 자랍니다.",

@@ -15,10 +15,20 @@ export function generateStaticParams() {
 // 배열에 없는 slug는 만들지 않고 404로 보낸다.
 export const dynamicParams = false;
 
+const SITE_URL = "https://miracleofming.github.io";
+
 export async function generateMetadata({ params }: PageProps<"/apps/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const app = getApp(slug);
-  return { title: app?.name, description: app?.summary.replace(/\n/g, " ") };
+  const description = app?.summary.replace(/\n/g, " ");
+  return {
+    title: app?.name,
+    description,
+    // 카카오톡·메신저에 링크를 붙였을 때 보이는 미리보기 이미지
+    openGraph: app?.ogImage
+      ? { title: app.name, description, images: [{ url: `${SITE_URL}${app.ogImage}`, width: 1024, height: 500 }] }
+      : undefined,
+  };
 }
 
 export default async function AppPage({ params }: PageProps<"/apps/[slug]">) {

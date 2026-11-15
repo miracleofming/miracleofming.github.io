@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "@/components/ChevronRight";
 // 상세 페이지용: 폰 프레임 없이 스크린샷만 보여 준다.
 // 가로 한 줄로 나열하고, 넘치면 옆으로 스크롤(스와이프)하거나 버튼으로 넘긴다.
 export function ScreenGallery({ app }: { app: App }) {
-  const shots = app.screenshots ?? [];
+  const shots = app.galleryShots ?? app.screenshots ?? [];
   const trackRef = useRef<HTMLDivElement>(null);
   const [edge, setEdge] = useState({ start: true, end: true });
 

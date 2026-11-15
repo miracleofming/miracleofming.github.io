@@ -57,6 +57,7 @@ export const apps: App[] = [
   },
   {
     slug: "jaraneunna",
+    icon: "/apps/jaraneunna/icon.png",
     splashColor: "#d6d2c8",
     screenColor: "#d6d2c8",
     fullScreenShots: true,

@@ -10,6 +10,8 @@ export type App = {
   // 화면 위쪽 상태바 자리는 비워 두므로 상태바 없는 캡처를 쓴다.
   screenshots?: string[];
   screenColor?: string; // 스크린샷 위 상태바 자리 배경 (캡처 맨 윗줄 색)
+  // 상세 페이지 갤러리에만 쓸 이미지 (헤드라인이 들어간 스토어 이미지 등). 없으면 screenshots를 쓴다
+  galleryShots?: string[];
   fullScreenShots?: boolean; // 상태바까지 담긴 실제 폰 캡처면 true → 화면을 꽉 채운다
   status?: string; // 예: "App Store 출시", "개발 중" (정해지면 추가)
   storeLinks?: { label: string; href: string }[];
@@ -63,6 +65,7 @@ export const apps: App[] = [
     screenColor: "#d6d2c8",
     fullScreenShots: true,
     screenshots: [1, 2, 3, 4, 5, 6].map((n) => `/apps/jaraneunna/screen-${n}.webp`),
+    galleryShots: [1, 2, 3, 4, 5, 6].map((n) => `/apps/jaraneunna/store-${n}.webp`),
     ogImage: "/apps/jaraneunna/feature-graphic.png",
     name: "자라는 나",
     summary:

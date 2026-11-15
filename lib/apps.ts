@@ -55,6 +55,16 @@ export const apps: App[] = [
     summary:
       "목표 하나 정하고, 함께 인증하며 서로 응원하는 습관 모임.\n혼자서는 흐지부지되던 다짐도, 같이 하면 끝까지 갈 수 있습니다.",
   },
+  {
+    slug: "jaraneunna",
+    splashColor: "#d6d2c8",
+    screenColor: "#d6d2c8",
+    fullScreenShots: true,
+    screenshots: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `/apps/jaraneunna/screen-${n}.webp`),
+    name: "자라는 나",
+    summary:
+      "나를 닮은 도트 캐릭터와 목표별 알을 키우는 육성 기록 앱.\n'운동하는 나', '책 읽는 나'처럼 목표마다 알을 두고, 기록할 때마다 함께 자랍니다.",
+  },
 ];
 
 export function getApp(slug: string) {

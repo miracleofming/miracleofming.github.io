@@ -5,7 +5,7 @@ import { getApp } from "@/lib/apps";
 import { getPrivacyPolicy, privacyPolicies } from "@/lib/privacy";
 import { Container } from "@/components/Section";
 
-// 방침 내용이 있는 앱만 페이지를 만든다. (지금은 beatcue)
+// 방침 내용이 있는 앱만 페이지를 만든다.
 export function generateStaticParams() {
   return Object.keys(privacyPolicies).map((slug) => ({ slug }));
 }

@@ -5,7 +5,7 @@ import type { App } from "@/lib/apps";
 import { ChevronLeft, ChevronRight } from "@/components/ChevronRight";
 
 // 상세 페이지용: 폰 프레임 없이 스크린샷만 보여 준다.
-// 가로 한 줄로 나열하고, 넘치면 옆으로 스크롤(스와이프)하거나 버튼으로 넘긴다.
+// 가로 한 줄로 나열하고, 넘치면 스와이프하거나 양옆 화살표로 넘긴다. 스크롤바는 숨긴다.
 export function ScreenGallery({ app }: { app: App }) {
   const shots = app.galleryShots ?? app.screenshots ?? [];
   const trackRef = useRef<HTMLDivElement>(null);
@@ -47,15 +47,29 @@ export function ScreenGallery({ app }: { app: App }) {
   );
 
 
+  // 화살표는 이미지 줄 양옆 가운데에 둔다. 이미지 위에 겹치지 않고 바깥에 자리를 따로 잡는다.
+  // 모바일(sm 미만)은 폭이 좁아 화살표를 숨기고, 화면 끝까지 붙인 줄에서 스와이프로 넘긴다.
+  const showNav = !(edge.start && edge.end);
   const navButton =
-    "flex size-9 items-center justify-center rounded-[var(--radius-ui)] text-muted hover:bg-surface hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent";
+    "hidden size-9 shrink-0 items-center justify-center rounded-[var(--radius-ui)] text-muted hover:bg-surface hover:text-foreground disabled:pointer-events-none disabled:opacity-30 sm:flex";
 
   return (
-    <div>
+    <div className="flex items-center gap-2">
+      {showNav && (
+        <button
+          type="button"
+          onClick={() => scroll(-1)}
+          disabled={edge.start}
+          className={navButton}
+          aria-label="이전 화면"
+        >
+          <ChevronLeft className="size-5" />
+        </button>
+      )}
       <div
         ref={trackRef}
         onScroll={update}
-        className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6"
+        className="no-scrollbar -mx-4 flex min-w-0 flex-1 snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 sm:mx-0 sm:scroll-px-0 sm:px-0"
         aria-label={`${app.name} 화면`}
       >
         {shots.map((src, i) => (
@@ -67,27 +81,16 @@ export function ScreenGallery({ app }: { app: App }) {
           </div>
         ))}
       </div>
-      {!(edge.start && edge.end) && (
-        <div className="mt-4 flex justify-end gap-1">
-          <button
-            type="button"
-            onClick={() => scroll(-1)}
-            disabled={edge.start}
-            className={navButton}
-            aria-label="이전 화면"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll(1)}
-            disabled={edge.end}
-            className={navButton}
-            aria-label="다음 화면"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
+      {showNav && (
+        <button
+          type="button"
+          onClick={() => scroll(1)}
+          disabled={edge.end}
+          className={navButton}
+          aria-label="다음 화면"
+        >
+          <ChevronRight className="size-5" />
+        </button>
       )}
     </div>
   );
